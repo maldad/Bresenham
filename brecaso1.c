@@ -11,11 +11,11 @@ main(){
     scanf("%d", &yf);
     printf("Punto inicial (%d, %d) Punto final (%d, %d)\n", xi, yi, xf, yf);
     */
-    xi = 0;
-    yi = 0;
-    xf = 10;
-    yf = 10;
-    int limite = 12;
+    xi = 4;
+    yi = 2;
+    xf = 13;
+    yf = 9;
+    int limite = 22;
 
     char matriz[limite][limite];
 
@@ -26,7 +26,8 @@ main(){
             matriz[i][j] = '.';
         }
     }
-    matriz[xi][yi] = 'S';
+    //matriz[xi][yi] = 'S';
+    matriz[yi][xi] = 'S';
 
     //calculando DELTAS
     int deltax = xf-xi;
@@ -50,20 +51,21 @@ main(){
                 xk++;
                 yk++;
 
-                matriz[xk][yk] = '@';
+                matriz[yk][xk] = '@';
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+B;
             }//if
             else{
                 xk++;
-                matriz[xk][yk] = '@';
+                matriz[yk][xk] = '@';
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+A;
             }//else
         }//while
     }//if caso 1
 
-    matriz[xf][yf] = 'E';
+    //matriz[xf][yf] = 'E';
+    matriz[yf][xf] = 'E';
     printf("final (%d, %d)\n", xf, yf);
     int k, l;
     //este for va imprimir la matriz al reves
@@ -73,12 +75,6 @@ main(){
           printf("%c ", matriz[k][l] );
        }
        printf("\n" );
-   }
-   /*for ( m = xf; m >= 0; m-- ){
-      for ( n = 0; n <= yf; n++ ){
-         printf("%c ", matriz[m][n] );
-      }
-      printf("\n" );
-  }*/
+   }//for
 
 }//main
