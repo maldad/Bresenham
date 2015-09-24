@@ -11,43 +11,41 @@ main(){
     scanf("%d", &yf);
     printf("Punto inicial (%d, %d) Punto final (%d, %d)\n", xi, yi, xf, yf);
     */
-    xi = 20;
-    yi = 10;
-    xf = 30;
-    yf = 18;
-    /*xi = 7;
-    yi = 3;
-    xf = 4;
-    yf = 4;*/
+    xi = 0;
+    yi = 0;
+    xf = 10;
+    yf = 10;
+    int limite = 12;
 
-    char matriz[xf+1][yf+1];
+    char matriz[limite][limite];
 
     //rellena la matriz con puntos;
     int i, j;
-    for( i = 0; i < xf+1; i++){
-        for(j = 0; j < yf+1; j++){
+    for( i = 0; i < limite; i++){
+        for(j = 0; j < limite; j++){
             matriz[i][j] = '.';
         }
     }
-
+    matriz[xi][yi] = 'S';
 
     //calculando DELTAS
     int deltax = xf-xi;
     int deltay = yf-yi;
-    printf(" dy %d dx %d\n", deltay, deltax);
+    //printf("dy %d dx %d\n", deltay, deltax);
     //IF caso 1
     if(deltay >= 0 && deltax >= 0 && abs(deltay) <= abs(deltax)){
         int A = 2*deltay;
         int B = 2*deltay - 2*deltax;
         int pi = 2*deltay - deltax;
-        printf("%d %d %d dy %d dx %d\n", A, B, pi, deltay, deltax);
+        printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
+        printf("inicio (%d, %d)\n", xi, yi);
         int xk = xi;
         int yk = yi;
         int cont = 1;
-        while (cont == 1) {
-            if(xk == xf && yk == yf){
-                cont = 0;
-            }
+        while (xk != xf || yk != yf) {
+            //if(xk == xf && yk == yf){
+            //    cont = 0;
+            //}
             if(pi > 0){
                 xk++;
                 yk++;
@@ -65,14 +63,22 @@ main(){
         }//while
     }//if caso 1
 
+    matriz[xf][yf] = 'E';
+    printf("final (%d, %d)\n", xf, yf);
     int k, l;
     //este for va imprimir la matriz al reves
     //como si de un plano cartesiano real de tratara
-    for ( k = xf; k >= 0; k-- ){
-       for ( l = 0; l <= yf; l++ ){
+    for ( k = limite-1; k >= 0; k-- ){
+       for ( l = 0; l < limite; l++ ){
           printf("%c ", matriz[k][l] );
        }
        printf("\n" );
    }
+   /*for ( m = xf; m >= 0; m-- ){
+      for ( n = 0; n <= yf; n++ ){
+         printf("%c ", matriz[m][n] );
+      }
+      printf("\n" );
+  }*/
 
 }//main
