@@ -11,10 +11,10 @@ main(){
     scanf("%d", &yf);
     printf("Punto inicial (%d, %d) Punto final (%d, %d)\n", xi, yi, xf, yf);
     */
-    xi = 4;
-    yi = 2;
-    xf = 13;
-    yf = 9;
+    xi = 3;
+    yi = 4;
+    xf = 3;
+    yf = 10;
     int limite = 22;
 
     char matriz[limite][limite];
@@ -33,6 +33,23 @@ main(){
     int deltax = xf-xi;
     int deltay = yf-yi;
     //printf("dy %d dx %d\n", deltay, deltax);
+
+    //IF para linea recta subiendo por Y
+    if(deltax == 0){
+        //probando sin calcular nada
+        //solo vamos a recorrer de punto a punto
+        printf("dy %d dx %d\n", deltay, deltax);
+        printf("inicio (%d, %d)\n", xi, yi);
+        int xk = xi;
+        int yk = yi+1;
+
+        while(yk < yf){
+            matriz[yk][xk] = '@';
+            printf("punto (%d, %d)\n", xk, yk);
+            yk++;
+        }//while
+    }//IF recta subre Y
+
     //IF caso 1
     if(deltay >= 0 && deltax >= 0 && abs(deltay) <= abs(deltax)){
         int A = 2*deltay;
@@ -42,7 +59,7 @@ main(){
         printf("inicio (%d, %d)\n", xi, yi);
         int xk = xi;
         int yk = yi;
-        int cont = 1;
+        //int cont = 1;
         while (xk != xf || yk != yf) {
             //if(xk == xf && yk == yf){
             //    cont = 0;
