@@ -11,10 +11,10 @@ main(){
     scanf("%d", &yf);
     printf("Punto inicial (%d, %d) Punto final (%d, %d)\n", xi, yi, xf, yf);
     */
-    xi = 15;
-    yi = 17;
-    xf = 3;
-    yf = 3;
+    xi = 8;
+    yi = 10;
+    xf = 1;
+    yf = 1;
     int limite = 22;
     char matriz[limite][limite];
 
@@ -181,7 +181,7 @@ main(){
         }//while
     }//if caso 3
 
-    //IF caso 3, m > 45° bajando
+    //IF caso 4, m > 45° bajando
     if(deltay < 0 && deltax < 0 && abs(deltay) > abs(deltax)){
         printf("CASO 4\n");
         int A = 2*deltax;
@@ -208,6 +208,121 @@ main(){
             }//else
         }//while
     }//if caso 4
+
+    //CASOS DE PENDIENTES NEGATIVAS
+    //CASO 5, m < 0, bajando en X
+    if(deltay < 0 && deltax >= 0 && abs(deltax) > abs(deltay)){
+        printf("CASO 5\n" );
+        int A = -2*deltay;
+        int B = -2*deltay - 2*deltax;
+        int pi = -2*deltay - deltax;
+        printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
+        printf("inicio (%d, %d)\n", xi, yi);
+        int xk = xi;
+        int yk = yi;
+
+        while (xk != xf || yk != yf) {
+            if(pi > 0){
+                xk++;
+                yk--;
+                matriz[yk][xk] = '@';
+                printf("punto (%d, %d)\n", xk, yk);
+                pi = pi+B;
+            }//if
+            else{
+                xk++;
+                matriz[yk][xk] = '@';
+                printf("punto (%d, %d)\n", xk, yk);
+                pi = pi+A;
+            }//else
+        }//while
+    }//if caso 5
+
+    //CASO 6, m < 0, subiendo en X
+    if(deltay >= 0 && deltax < 0 && abs(deltax) > abs(deltay)){
+        printf("CASO 6\n" );
+        int A = -2*deltay;
+        int B = -2*deltay - 2*deltax;
+        int pi = -2*deltay - deltax;
+        printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
+        printf("inicio (%d, %d)\n", xi, yi);
+        int xk = xi;
+        int yk = yi;
+
+        while (xk != xf || yk != yf) {
+            if(pi > 0){
+                xk--;
+                matriz[yk][xk] = '@';
+                printf("punto (%d, %d)\n", xk, yk);
+                pi = pi+A;
+            }//if
+            else{
+                xk--;
+                yk++;
+                matriz[yk][xk] = '@';
+                printf("punto (%d, %d)\n", xk, yk);
+                pi = pi+B;
+            }//else
+        }//while
+    }//if caso 6
+
+    //CASO 7, m < 0, bajando por Y
+    if(deltay < 0 && deltax >= 0 && abs(deltax) <= abs(deltay)){
+        printf("CASO 7\n" );
+        int A = -2*deltax;
+        int B = -2*deltax - 2*deltay;
+        int pi = -2*deltax - deltay;
+        printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
+        printf("inicio (%d, %d)\n", xi, yi);
+        int xk = xi;
+        int yk = yi;
+
+        while (xk != xf || yk != yf) {
+            if(pi > 0){
+                //xk++;
+                yk--;
+                matriz[yk][xk] = '@';
+                printf("punto (%d, %d)\n", xk, yk);
+                pi = pi+A;
+            }//if
+            else{
+                xk++;
+                yk--;
+                matriz[yk][xk] = '@';
+                printf("punto (%d, %d)\n", xk, yk);
+                pi = pi+B;
+            }//else
+        }//while
+    }//if caso 7
+
+    //CASO 8, m < 0, subiendo por Y
+    if(deltay >= 0 && deltax < 0 && abs(deltax) <= abs(deltay)){
+        printf("CASO 8\n" );
+        int A = -2*deltax;
+        int B = -2*deltax - 2*deltay;
+        int pi = -2*deltax - deltay;
+        printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
+        printf("inicio (%d, %d)\n", xi, yi);
+        int xk = xi;
+        int yk = yi;
+
+        while (xk != xf || yk != yf) {
+            if(pi > 0){
+                xk--;
+                yk++;
+                matriz[yk][xk] = '@';
+                printf("punto (%d, %d)\n", xk, yk);
+                pi = pi+B;
+            }//if
+            else{
+                //xk++;
+                yk++;
+                matriz[yk][xk] = '@';
+                printf("punto (%d, %d)\n", xk, yk);
+                pi = pi+A;
+            }//else
+        }//while
+    }//if caso 8
 
     //AJUSTES FINALES ANTES DE IMPRIMIR LA MATRIZ YA CON LA RECTA DIBUJADA
     matriz[yf][xf] = 'E';
