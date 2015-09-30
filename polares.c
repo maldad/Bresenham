@@ -1,47 +1,29 @@
 #include <stdio.h>
 #include <math.h>
-//#include "brecaso1.c"
+
 //TRANSFORMAR DE POLARES A CARTESIANAS
-redondear(int num){
+float redondear(float num){
     return round(num);
 }//redondear
-int m = 2;
-char matriz[2][2];
-rellena(){
-    int i, j;
-    for( i = 0; i < 2; i++){
-        for(j = 0; j < 2; j++){
-            matriz[i][j] = 'X';
-        }
-    }//for
-}
-imprimeLaMadre(){
-    int a, b;
-    for( a = 0; a < 2; a++){
-        for(b = 0; b < 2; b++){
-            printf("%c\n", matriz[a][b]);
-        }
-    }//for
-}
-main(){
 
-rellena();
-matriz[1][1] = 'R';
-imprimeLaMadre();
-
-
-    /*
-    //distancia al punto
-    int r = 10;
-    //angulo respecto a X
-    int angle = 144;
-
-    int cx = r*cos(angle/57.3);
-    int cy = r*sin(angle/57.3);
+abscisa(int r, int angle){
+    float cx = r*cos(angle/57.3);
     cx = redondear(cx);
-    cy = redondear(cy);
+    int cxx = cx;
+    return cxx;
+}//abscisa
 
-    printf("polar: (%d, %d°), cartesiana: (%d, %d)\n", r, angle, cx, cy);
-    linea(0, 0, 4, 4);
-    */
+ordenada(int r, int angle){
+    float cy = r*sin(angle/57.3);
+    cy = redondear(cy);
+    int cyy = cy;
+    return cyy;
+}//ordenada
+
+/*
+main(){
+	int r = 10;
+	int angle = 288;
+    printf("polar: (%d, %d°), cartesiana: (%d, %d)\n", r, angle, abscisa(r, angle), ordenada(r, angle));
 }//main
+*/

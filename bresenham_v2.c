@@ -3,15 +3,16 @@ int limite = 44;
 char matriz[44][44];
 //iteradores de coordenadas
 int xk, yk;
-main(){
+/*main(){
     rellena();
     ejes();
     linea(0, 0, 7, 7);
     linea(0, 10, 4, 10);
     linea(15, 0, 15, 10);
     linea(10, 5, 19, 9);
+    linea(-8, -8, -2, 0);
     imprime();
-}//main
+}//main*/
 
 rellena(){
     //rellena la matriz con puntos;
@@ -244,7 +245,7 @@ linea(int xs, int ys, int xe, int ye){
     //CASOS DE PENDIENTES NEGATIVAS
 ///////////////////////////////////////////////////////////////////////////////////////////////
     //CASO 5, m < 0, bajando en X
-    if(deltay < 0 && deltax >= 0 && abs(deltax) > abs(deltay)){
+    if(deltay < 0 && deltax > 0 && abs(deltax) > abs(deltay)){
         printf("CASO 5\n" );
         int A = -2*deltay;
         int B = -2*deltay - 2*deltax;
@@ -272,7 +273,7 @@ linea(int xs, int ys, int xe, int ye){
     }//if caso 5
 
     //CASO 6, m < 0, subiendo en X
-    if(deltay >= 0 && deltax < 0 && abs(deltax) > abs(deltay)){
+    if(deltay > 0 && deltax < 0 && abs(deltax) > abs(deltay)){
         printf("CASO 6\n" );
         int A = -2*deltay;
         int B = -2*deltay - 2*deltax;
@@ -300,7 +301,7 @@ linea(int xs, int ys, int xe, int ye){
     }//if caso 6
 
     //CASO 7, m < 0, bajando por Y
-    if(deltay < 0 && deltax >= 0 && abs(deltax) <= abs(deltay)){
+    if(deltay < 0 && deltax > 0 && abs(deltax) <= abs(deltay)){
         printf("CASO 7\n" );
         int A = -2*deltax;
         int B = -2*deltax - 2*deltay;
@@ -329,7 +330,7 @@ linea(int xs, int ys, int xe, int ye){
     }//if caso 7
 
     //CASO 8, m < 0, subiendo por Y
-    if(deltay >= 0 && deltax < 0 && abs(deltax) <= abs(deltay)){
+    if(deltay > 0 && deltax < 0 && abs(deltax) <= abs(deltay)){
         printf("CASO 8\n" );
         int A = -2*deltax;
         int B = -2*deltax - 2*deltay;
