@@ -1,12 +1,15 @@
 #include <stdio.h>
-int limite = 22;
-char matriz[22][22];
-
+int limite = 44;
+char matriz[44][44];
+//iteradores de coordenadas
+int xk, yk;
 main(){
     rellena();
-    linea(0, 0, 4, 4);
+    ejes();
+    linea(0, 0, 7, 7);
     linea(0, 10, 4, 10);
     linea(15, 0, 15, 10);
+    linea(10, 5, 19, 9);
     imprime();
 }//main
 
@@ -21,6 +24,16 @@ rellena(){
     }//for
 }//rellena
 
+ejes(){
+    int i, j;
+    for(i = 0; i < limite; i++){
+        matriz[i][20] = '|';
+    }
+    for(j = 0; j < limite; j++){
+        matriz[20][j] = '_';
+    }
+}//ejes
+
 imprime(){
     int k, l;
     //este for va imprimir la matriz al reves
@@ -33,25 +46,19 @@ imprime(){
     }//for
 }//imprime
 
+colocar(int x, int y){
+    matriz[x+20][y+20] = '@';
+}//colocar
+
 linea(int xs, int ys, int xe, int ye){
-    //int xi, yi, xf, yf;
-    /*puts("X inicial");
-    scanf("%d", &xi);
-    puts("Y inicial");
-    scanf("%d", &yi);
-    puts("X final");
-    scanf("%d", &xf);
-    puts("Y final");
-    scanf("%d", &yf);
-    printf("Punto inicial (%d, %d) Punto final (%d, %d)\n", xi, yi, xf, yf);
-    */
+
     int xi = xs;
     int yi = ys;
     int xf = xe;
     int yf = ye;
 
     //matriz[yi][xi] = 'S';
-    matriz[yi][xi] = '@';
+    matriz[yi+20][xi+20] = '@';
 
     //calculando DELTAS
     int deltax = xf-xi;
@@ -62,11 +69,11 @@ linea(int xs, int ys, int xe, int ye){
         puts("caso R1");
         printf("dy %d dx %d\n", deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi;
-        int yk = yi+1;
+        xk = xi;
+        yk = yi+1;
 
         while(yk < yf){
-            matriz[yk][xk] = '@';
+            colocar(yk, xk);
             printf("punto (%d, %d)\n", xk, yk);
             yk++;
         }//while
@@ -77,11 +84,11 @@ linea(int xs, int ys, int xe, int ye){
         puts("caso R2");
         printf("dy %d dx %d\n", deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi;
-        int yk = yi-1;
+        xk = xi;
+        yk = yi-1;
 
         while(yk > yf){
-            matriz[yk][xk] = '@';
+            colocar(yk, xk);
             printf("punto (%d, %d)\n", xk, yk);
             yk--;
         }//while
@@ -92,11 +99,11 @@ linea(int xs, int ys, int xe, int ye){
         puts("caso R3");
         printf("dy %d dx %d\n", deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi+1;
-        int yk = yi;
+        xk = xi+1;
+        yk = yi;
 
         while(xk < xf){
-            matriz[yk][xk] = '@';
+            colocar(yk, xk);
             printf("punto (%d, %d)\n", xk, yk);
             xk++;
         }//while
@@ -107,11 +114,11 @@ linea(int xs, int ys, int xe, int ye){
         puts("caso R4");
         printf("dy %d dx %d\n", deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi-1;
-        int yk = yi;
+        xk = xi-1;
+        yk = yi;
 
         while(xk > xf){
-            matriz[yk][xk] = '@';
+            colocar(yk, xk);
             printf("punto (%d, %d)\n", xk, yk);
             xk--;
         }//while
@@ -129,20 +136,20 @@ linea(int xs, int ys, int xe, int ye){
         int pi = 2*deltay - deltax;
         printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi;
-        int yk = yi;
+        xk = xi;
+        yk = yi;
 
         while (xk != xf || yk != yf) {
             if(pi > 0){
                 xk++;
                 yk++;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+B;
             }//if
             else{
                 xk++;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+A;
             }//else
@@ -157,20 +164,20 @@ linea(int xs, int ys, int xe, int ye){
         int pi = 2*deltay - deltax;
         printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi;
-        int yk = yi;
+        xk = xi;
+        yk = yi;
 
         while (xk != xf || yk != yf) {
             if(pi > 0){
                 xk--;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+A;
             }//if
             else{
                 xk--;
                 yk--;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+B;
             }//else
@@ -185,20 +192,20 @@ linea(int xs, int ys, int xe, int ye){
         int pi = 2*deltax - deltay;
         printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi;
-        int yk = yi;
+        xk = xi;
+        yk = yi;
 
         while (xk != xf || yk != yf) {
             if(pi > 0){
                 xk++;
                 yk++;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+B;
             }//if
             else{
                 yk++;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+A;
             }//else
@@ -213,20 +220,20 @@ linea(int xs, int ys, int xe, int ye){
         int pi = 2*deltax - deltay;
         printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi;
-        int yk = yi;
+        xk = xi;
+        yk = yi;
 
         while (xk != xf || yk != yf) {
             if(pi > 0){
                 yk--;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+A;
             }//if
             else{
                 xk--;
                 yk--;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+B;
             }//else
@@ -244,20 +251,20 @@ linea(int xs, int ys, int xe, int ye){
         int pi = -2*deltay - deltax;
         printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi;
-        int yk = yi;
+        xk = xi;
+        yk = yi;
 
         while (xk != xf || yk != yf) {
             if(pi > 0){
                 xk++;
                 yk--;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+B;
             }//if
             else{
                 xk++;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+A;
             }//else
@@ -272,20 +279,20 @@ linea(int xs, int ys, int xe, int ye){
         int pi = -2*deltay - deltax;
         printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi;
-        int yk = yi;
+        xk = xi;
+        yk = yi;
 
         while (xk != xf || yk != yf) {
             if(pi > 0){
                 xk--;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+A;
             }//if
             else{
                 xk--;
                 yk++;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+B;
             }//else
@@ -300,21 +307,21 @@ linea(int xs, int ys, int xe, int ye){
         int pi = -2*deltax - deltay;
         printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi;
-        int yk = yi;
+        xk = xi;
+        yk = yi;
 
         while (xk != xf || yk != yf) {
             if(pi > 0){
                 //xk++;
                 yk--;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+A;
             }//if
             else{
                 xk++;
                 yk--;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+B;
             }//else
@@ -329,21 +336,21 @@ linea(int xs, int ys, int xe, int ye){
         int pi = -2*deltax - deltay;
         printf("A %d B %d pk %d dy %d dx %d\n", A, B, pi, deltay, deltax);
         printf("inicio (%d, %d)\n", xi, yi);
-        int xk = xi;
-        int yk = yi;
+        xk = xi;
+        yk = yi;
 
         while (xk != xf || yk != yf) {
             if(pi > 0){
                 xk--;
                 yk++;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+B;
             }//if
             else{
                 //xk++;
                 yk++;
-                matriz[yk][xk] = '@';
+                colocar(yk, xk);
                 printf("punto (%d, %d)\n", xk, yk);
                 pi = pi+A;
             }//else
@@ -352,7 +359,7 @@ linea(int xs, int ys, int xe, int ye){
 
     //AJUSTES FINALES ANTES DE IMPRIMIR LA MATRIZ YA CON LA RECTA DIBUJADA
     //matriz[yf][xf] = 'E';
-    matriz[yf][xf] = '@';
+    matriz[yf+20][xf+20] = '@';
     printf("final (%d, %d)\n", xf, yf);
 
 }//linea

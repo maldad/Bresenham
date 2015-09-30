@@ -5,6 +5,7 @@
 redondear(int num){
     return round(num);
 }//redondear
+int m = 2;
 char matriz[2][2];
 rellena(){
     int i, j;
@@ -25,6 +26,7 @@ imprimeLaMadre(){
 main(){
 
 rellena();
+matriz[1][1] = 'R';
 imprimeLaMadre();
 
 
