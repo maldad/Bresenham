@@ -48,6 +48,7 @@ imprime(){
 }//imprime
 
 colocar(int x, int y){
+    if((x >= -20 && y >= -20) && (x < 24 && y < 24))
     matriz[x+20][y+20] = '@';
 }//colocar
 
@@ -59,8 +60,8 @@ linea(int xs, int ys, int xe, int ye){
     int yf = ye;
 
     //matriz[yi][xi] = 'S';
-    matriz[yi+20][xi+20] = '@';
-
+    //matriz[yi+20][xi+20] = '@';
+    colocar(yi, xi);
     //calculando DELTAS
     int deltax = xf-xi;
     int deltay = yf-yi;
@@ -360,7 +361,8 @@ linea(int xs, int ys, int xe, int ye){
 
     //AJUSTES FINALES ANTES DE IMPRIMIR LA MATRIZ YA CON LA RECTA DIBUJADA
     //matriz[yf][xf] = 'E';
-    matriz[yf+20][xf+20] = '@';
+    //matriz[yf+20][xf+20] = '@';
+    colocar(yf, xf);
     printf("final (%d, %d)\n", xf, yf);
 
 }//linea

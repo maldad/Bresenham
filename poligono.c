@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "polares.c"
 #include "bresenham_v2.c"
-
+//#include "brecaso1.c"
 //TODO
 //[x] - calcular coordenadas cartesianas llamando a polares.c
 //[x] - guardar esas coordenadas en 2 arreglos, uno para X, otro para Y
@@ -53,7 +53,13 @@ grafica_lados(){
 }//grafica_lados
 
 main(){
-    calcula_cartesianas(9, 5);
+    //radio, lados
+    int r, l;
+    puts("radio...");
+    scanf("%d", &r);
+    puts("lados...");
+    scanf("%d", &l);
+    calcula_cartesianas(r, l);
     int i;
     for(i = 0; i < 10; i++){
         printf("cartesiana %d: (%d, %d)\n", i, abscisas[i], ordenadas[i]);
